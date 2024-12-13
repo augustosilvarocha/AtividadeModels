@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe</title>
+</head>
+<body>
+    <table border="1">
+        <h1>Detalhe do Produto: {{produto.name}}</h1>
+        <tr>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Data de criação</th>
+            <th>Categoria</th>
+            <th>Fornecedor</th>
+        </tr>
+        <tbody>
+            <tr>
+                <td>{{ produto.name }}</td>
+                <td>{{ produto.code }}</td>
+                <td>{{ produto.description }}</td>
+                <td>{{ produto.price }}</td>
+                <td>{{ produto.amount }}</td>
+                <td>{{ produto.creation_date }}</td>
+                <td>
+                    {% for categoria in produto.category.all %}
+                    {{ categoria.name }}
+                    {% endfor %}
+                </td>
+                <td>{{ produto.supplier }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4><a href="{% url 'index'%}">Voltar para tela Inicial</a></h4>
+</body>
+</html>
