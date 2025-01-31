@@ -42,7 +42,7 @@ def create_product(request):
             )
             produto.save()
             produto.category.set(form.cleaned_data['category'])
-            return redirect('listar_produtos')
+            return redirect('list-product')
     else:
         form = ProdutoForms()
     return render(request, "forms/formulario_produto.html", {'form':form})
@@ -57,7 +57,7 @@ def create_supplier(request):
                 email = form.cleaned_data['email'],
             )
             supplier.save()
-            return redirect('list-product')
+            return redirect('list-supplier')
 
     else:
         form = FornecedorForms()
@@ -72,7 +72,7 @@ def create_category(request):
                 name = form.cleaned_data['name'],
             )
             category.save()
-            return redirect('listing', 'categorias')
+            return redirect('list-category')
     else:
         form = CategoriaForms()
         return render(request, "forms/formulario_categoria.html", {'form':form})
