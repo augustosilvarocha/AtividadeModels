@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Produtos</title>
+</head>
+
+<body>
+    <table border="1">
+        <h1>Listagem de Categorias</h1>
+        <tr>
+            <th>Nome</th>
+        </tr>
+        <tbody>
+            {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h4><a href="{% url 'index'%}">Voltar para tela Inicial</a></h4>
+
+</body>

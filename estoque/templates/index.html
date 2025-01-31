@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>Listagem</h1>
+    <p>Escolha um dos modelos abaixo para ver sua listagem.</p>
+    <a href="{% url 'list-product' %}">Produtos</a>
+    <br>
+    <a href="{% url 'list-category' %}">Categorias</a>
+    <br>
+    <a href="{% url 'list-supplier' %}">Fornecedores</a>
+    <br>
+    <br>
+    <h2>Cadastro</h2>
+    <p>Escolha um dos modelos abaixo para criar um novo registro.</p>
+    <a href="{% url 'create-product' %}">Criar Produto</a>
+    <br>
+    <a href="{% url 'create-category' %}">Criar Categoria</a>
+    <br>
+    <a href="{% url 'create-supplier' %}">Criar Fornecedor</a>
+</body>
+
+</html>
