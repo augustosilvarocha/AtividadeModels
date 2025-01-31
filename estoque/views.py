@@ -1,27 +1,27 @@
 from django.shortcuts import render
 from estoque import models
 from .forms import ProdutoForms, FornecedorForms, CategoriaForms
-from django.urls import reverse
 from django.shortcuts import redirect
+from django.views.generic.list import ListView
 
 
 def Index(request):
     return render(request, 'index.html')
 
-def List(request, choice):
-    if choice == 'produtos':
-        produtos = models.Produto.objects.all()
-        context = {'produtos':produtos}
+class ProdutoListView(ListView):
+    model = models.Produto
+    template_name = "list_produtos.html"
+    context_object_name = "produtos"
 
-    elif choice == 'fornecedores':
-        fornecedores = models.Fornecedor.objects.all()
-        context = {'fornecedores':fornecedores}
+class FornecedorListView(ListView):
+    model = models.Fornecedor
+    template_name = "list_supplier.html"
+    context_object_name = "fornecedores"
 
-    elif choice == 'categorias':
-        categorias = models.Categoria.objects.all()
-        context = {'categorias':categorias}
-
-    return render(request, 'table.html', context)
+class CategoriaListView(ListView):
+    model = models.Categoria
+    template_name = "list_category.html"
+    context_object_name = "categorias"
 
 def DetailProduct(request, pk):
     produto = models.Produto.objects.get(id=pk)
@@ -42,10 +42,10 @@ def create_product(request):
             )
             produto.save()
             produto.category.set(form.cleaned_data['category'])
-            return redirect('listing', 'categorias')
+            return redirect('listar_produtos')
     else:
         form = ProdutoForms()
-        return render(request, "forms/formulario_produto.html", {'form':form})
+    return render(request, "forms/formulario_produto.html", {'form':form})
     
 def create_supplier(request):
     if request.method =="POST":
@@ -57,7 +57,8 @@ def create_supplier(request):
                 email = form.cleaned_data['email'],
             )
             supplier.save()
-            return redirect('listing', 'fornecedores')
+            return redirect('list-product')
+
     else:
         form = FornecedorForms()
         return render(request, "forms/formulario_fornecedor.html", {'form':form})
